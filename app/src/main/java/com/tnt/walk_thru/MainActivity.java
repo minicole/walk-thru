@@ -12,9 +12,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    String appId = "secret";
-    String appToken = "secret";
-
     private BeaconManager beaconManager;
     private String scanId;
 
@@ -23,13 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //  App ID & App Token can be taken from App section of Estimote Cloud.
-        EstimoteSDK.initialize(this.getApplicationContext(), appId, appToken);
-        // Optional, debug logging.
-        EstimoteSDK.enableDebugLogging(true);
-
         beaconManager = new BeaconManager(getApplicationContext());
-
 
         // Should be invoked in #onCreate.
         beaconManager.setNearableListener(new BeaconManager.NearableListener() {
