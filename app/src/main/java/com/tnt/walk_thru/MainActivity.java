@@ -1,8 +1,10 @@
 package com.tnt.walk_thru;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.EstimoteSDK;
@@ -58,6 +60,16 @@ public class MainActivity extends AppCompatActivity {
         // When no longer needed. Should be invoked in #onDestroy.
         beaconManager.disconnect();
     }
+
+    /**
+     * Button launches an intent to switch to the activity
+     * @param view Current activity
+     */
+    public void switchToStartActivity(View view){
+        final Intent intent = new Intent(this, BaseActivity.class);
+        startActivity(intent);
+    }
+
 
 
 }

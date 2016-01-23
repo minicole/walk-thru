@@ -9,8 +9,8 @@ public class app extends Application{
 
     private static app instance = new app();
 
-    private String appId = "secret";
-    private String appToken = "secret";
+    String appId = "walk-thru-30b";
+    String appToken = "2c5ffc3c2fc7baf417473dcd2f7c0d81";
 
     /**
      * default constructor that sets the instance
