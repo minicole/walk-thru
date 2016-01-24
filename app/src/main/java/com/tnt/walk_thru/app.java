@@ -2,6 +2,7 @@ package com.tnt.walk_thru;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.estimote.sdk.EstimoteSDK;
 import com.facebook.FacebookSdk;
@@ -46,6 +47,8 @@ public class app extends Application{
         EstimoteSDK.initialize(this, appId, appToken);
         // Optional, debug logging.
         EstimoteSDK.enableDebugLogging(true);
+
+        Log.d("APP", "Initializing Parse");
 
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);

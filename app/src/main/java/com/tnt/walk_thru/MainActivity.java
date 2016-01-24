@@ -9,13 +9,16 @@ import android.widget.ListView;
 
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
-import com.estimote.sdk.EstimoteSDK;
-import com.estimote.sdk.Nearable;
 import com.estimote.sdk.Region;
+import com.estimote.sdk.Utils;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private String scanId;
     private List<Restaurant> restoList;
     private List<Beacon> beaconList;
+    private List<String> beaconUuidList;
     private CustomAdapter listViewAdapter;
     private static final Region ALL_ESTIMOTE_BEACONS_REGION = new Region("rid", null, null, null);
 
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         mainListView.setAdapter(listViewAdapter);
 
         beaconList = new ArrayList();
+        beaconUuidList = new ArrayList();
 
         beaconManager = new BeaconManager(getApplicationContext());
 
@@ -46,11 +51,27 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < list.size(); i++) {
                     if (!beaconList.contains(list.get(i))) {
                         beaconList.add(list.get(i));
+                        beaconUuidList.add(list.get(i).getMacAddress().toString());
                         Log.d("Main", "Beacon Discovered: " + list.get(i).toString());
+                        parseQueryForBeacon(list.get(i));
                     }
+                    Log.d("Main", list.get(i).getMacAddress().toString() + " distance: " + String.valueOf(Utils.computeAccuracy(list.get(i))));
                 }
             }
         });
+    }
+
+    public void parseQueryForBeacon(Beacon beacon) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Restaurant");
+            try {
+                ParseObject result = query.whereEqualTo("beacon_UUID", beacon.getMacAddress().toString()).getFirst();
+                String yelp_id = result.getString("yelp_id");
+                Restaurant resto = new Restaurant(yelp_id, null, null, beacon);
+                this.addRestaurant(resto);
+                Log.d("Main", "Restaurant Found: " + yelp_id);
+            } catch (Exception e) {
+                Log.e("Main", e.toString());
+            }
     }
 
     public void addRestaurant(Restaurant resto) {
