@@ -1,14 +1,15 @@
 package com.tnt.walk_thru;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
-import com.estimote.sdk.EstimoteSDK;
 import com.estimote.sdk.Nearable;
+import com.estimote.sdk.Region;
 
 import java.util.List;
 
@@ -29,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNearablesDiscovered(List<Nearable> nearables) {
                 Log.d(this.getClass().getSimpleName(), "Discovered nearables: " + nearables);
+            }
+        });
+        beaconManager.setRangingListener(new BeaconManager.RangingListener() {
+            @Override
+            public void onBeaconsDiscovered(Region region, List<Beacon> list) {
+
             }
         });
     }
