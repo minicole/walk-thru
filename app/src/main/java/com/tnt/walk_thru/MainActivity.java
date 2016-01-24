@@ -18,6 +18,15 @@ public class MainActivity extends AppCompatActivity {
     private BeaconManager beaconManager;
     private String scanId;
 
+    /*
+ * Update OAuth credentials below from the Yelp Developers API site:
+ * http://www.yelp.com/developers/getting_started/api_access
+ */
+    private static final String CONSUMER_KEY = "Qm3iXRtMtERyrLw23jnHOw";
+    private static final String CONSUMER_SECRET = "_fZ9EMRxdurSIByMXlkqOZ-0CHs";
+    private static final String TOKEN = "7nQmSbbcaoQWLcJ9O9sqnOQiatj_GUCc";
+    private static final String TOKEN_SECRET = "diSaVmTcZV_t7j4efsywEWwj5o0";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,15 +47,32 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+//        Log.d("YELP", app.getYelp().search("burritos", 30.361471, -87.164326));
+
+        run.run();
     }
+
+    Runnable run = new Runnable() {
+        @Override
+        public void run() {
+
+            YelpAPI yelpAPI = YelpAPI.start();
+
+
+            Log.d("YELP", yelpAPI.searchForBusinessesByLocation("Italian", "Montreal"));
+        }
+    };
 
     @Override
     protected void onStart() {
         super.onStart();
 
+
         // Should be invoked in #onStart.
         beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
-            @Override public void onServiceReady() {
+            @Override
+            public void onServiceReady() {
                 scanId = beaconManager.startNearableDiscovery();
             }
         });
