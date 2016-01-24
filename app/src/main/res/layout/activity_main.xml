@@ -9,17 +9,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.tnt.walk_thru.MainActivity">
 
-    <TextView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sup"
-        android:id="@+id/startbutton"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="switchToStartActivity" />
+        android:id="@+id/mainListView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
