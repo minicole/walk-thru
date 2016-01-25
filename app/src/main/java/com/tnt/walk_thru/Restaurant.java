@@ -12,11 +12,13 @@ public class Restaurant {
     public String distance;
     public Bitmap logo;
     public Beacon beacon;
+    public Business business;
 
-    public Restaurant(String name, String distance, Bitmap logo, Beacon beacon) {
+    public Restaurant(String name, String distance, Bitmap logo, Beacon beacon, Business business) {
         this.name = name;
         this.distance = distance;
         this.logo = logo;
         this.beacon = beacon;
+        this.business = business;
     }
 }

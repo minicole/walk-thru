@@ -12,4 +12,9 @@
     <string name="action_example">Example action</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="consumer_key">Qm3iXRtMtERyrLw23jnHOw</string>
+    <string name="consumer_secret">_fZ9EMRxdurSIByMXlkqOZ-0CHs</string>
+    <string name="api_token">7nQmSbbcaoQWLcJ9O9sqnOQiatj_GUCc</string>
+    <string name="api_token_secret">diSaVmTcZV_t7j4efsywEWwj5o0</string>
 </resources>

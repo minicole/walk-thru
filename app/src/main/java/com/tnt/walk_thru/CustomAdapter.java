@@ -31,7 +31,7 @@ public class CustomAdapter extends ArrayAdapter<Restaurant> {
         TextView textViewDistance = (TextView) customView.findViewById(R.id.TextViewDistance);
         ImageView imageViewLogo = (ImageView) customView.findViewById(R.id.ImageLogo);
         textViewName.setText(name);
-        textViewDistance.setText(distance);
+        textViewDistance.setText(distance + " m");
         imageViewLogo.setImageBitmap(logo);   // Uses same image for all items
         return customView;
     }
